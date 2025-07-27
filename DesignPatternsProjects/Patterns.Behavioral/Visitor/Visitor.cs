@@ -387,7 +387,7 @@ namespace Patterns.Behavioral.Visitor
             TotalCharacterCount += document.Title.Length + document.Author.Length;
         }
 
-        private int CountWords(string text)
+        private static int CountWords(string text)
         {
             if (string.IsNullOrWhiteSpace(text))
                 return 0;

@@ -8,36 +8,39 @@ namespace Patterns.Creational.Prototype
     /// </summary>
     public class ShapeRegistry
     {
-        private Dictionary<string, Shape> shapes = new Dictionary<string, Shape>();
+        private readonly Dictionary<string, Shape> _shapes = new();
 
         /// <summary>
         /// Initialise le registre avec des formes par défaut
         /// </summary>
-        public ShapeRegistry()
+        public void InitializeDefault()
         {
-            // Initialiser avec des formes par défaut
-            Circle circle = new Circle();
-            circle.X = 10;
-            circle.Y = 10;
-            circle.Radius = 20;
-            circle.Color = "Rouge";
-            shapes["CircleRouge"] = circle;
+            var circle = new Circle
+            {
+                X = 10,
+                Y = 10,
+                Radius = 20,
+                Color = "Rouge"
+            };
+            _shapes["CircleRouge"] = circle;
 
-            Rectangle rectangle = new Rectangle();
-            rectangle.X = 20;
-            rectangle.Y = 20;
-            rectangle.Width = 30;
-            rectangle.Height = 10;
-            rectangle.Color = "Bleu";
-            shapes["RectangleBleu"] = rectangle;
+            var rectangle = new Rectangle
+            {
+                X = 20,
+                Y = 20,
+                Width = 30,
+                Height = 10,
+                Color = "Bleu"
+            };
+            _shapes["RectangleBleu"] = rectangle;
         }
 
         /// <summary>
-        /// Ajoute une forme au registre
+        /// Enregistre une forme prototype
         /// </summary>
-        public void RegisterShape(string key, Shape shape)
+        public void Register(string key, Shape shape)
         {
-            shapes[key] = shape;
+            _shapes[key] = shape;
         }
 
         /// <summary>
@@ -45,13 +48,13 @@ namespace Patterns.Creational.Prototype
         /// </summary>
         public Shape GetShape(string key)
         {
-            if (!shapes.ContainsKey(key))
+            if (!_shapes.ContainsKey(key))
             {
                 throw new ArgumentException($"Forme '{key}' non trouvée dans le registre.");
             }
             
             // Retourne un clone du prototype, pas l'original
-            return (Shape)shapes[key].Clone();
+            return (Shape)_shapes[key].Clone();
         }
 
         /// <summary>
@@ -60,12 +63,10 @@ namespace Patterns.Creational.Prototype
         public void ListAvailableShapes()
         {
             Console.WriteLine("Formes disponibles dans le registre:");
-            foreach (var key in shapes.Keys)
+            foreach (var key in _shapes.Keys)
             {
-                Console.WriteLine($"- {key}: {shapes[key]}");
+                Console.WriteLine($"- {key}: {_shapes[key]}");
             }
         }
     }
 }
-
-

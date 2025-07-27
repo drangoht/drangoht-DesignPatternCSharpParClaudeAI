@@ -34,8 +34,39 @@ namespace Patterns.Creational.Builder
 
         private void RunPatternDemo()
         {
-            // Cette méthode sera remplacée par le vrai code de test
-            throw new NotImplementedException();
+            var director = new Director();
+            var carBuilder = new CarBuilder();
+            var manualBuilder = new CarManualBuilder();
+
+            Console.WriteLine("1. Construction d'une voiture de base :");
+            director.BuildBasicCar(carBuilder);
+            var basicCar = carBuilder.GetResult();
+            Console.WriteLine(basicCar);
+
+            director.BuildBasicCar(manualBuilder);
+            var basicManual = manualBuilder.GetResult();
+            Console.WriteLine("\nManuel de la voiture de base :");
+            Console.WriteLine(basicManual);
+
+            Console.WriteLine("\n2. Construction d'une voiture de sport :");
+            director.BuildSportsCar(carBuilder);
+            var sportsCar = carBuilder.GetResult();
+            Console.WriteLine(sportsCar);
+
+            director.BuildSportsCar(manualBuilder);
+            var sportsManual = manualBuilder.GetResult();
+            Console.WriteLine("\nManuel de la voiture de sport :");
+            Console.WriteLine(sportsManual);
+
+            Console.WriteLine("\n3. Construction d'un SUV :");
+            director.BuildSUV(carBuilder);
+            var suv = carBuilder.GetResult();
+            Console.WriteLine(suv);
+
+            director.BuildSUV(manualBuilder);
+            var suvManual = manualBuilder.GetResult();
+            Console.WriteLine("\nManuel du SUV :");
+            Console.WriteLine(suvManual);
         }
 
         public string GetName()

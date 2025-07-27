@@ -34,8 +34,18 @@ namespace Patterns.Creational.FactoryMethod
 
         private void RunPatternDemo()
         {
-            // Cette méthode sera remplacée par le vrai code de test
-            throw new NotImplementedException();
+            Console.WriteLine("1. Création et utilisation d'un document PDF :");
+            DocumentCreator pdfCreator = new PdfCreator();
+            pdfCreator.OpenDocument();
+
+            Console.WriteLine("\n2. Création et utilisation d'un document Word :");
+            DocumentCreator wordCreator = new WordCreator();
+            wordCreator.OpenDocument();
+
+            Console.WriteLine("\nAvantages du pattern Factory Method :");
+            Console.WriteLine("- Évite le couplage fort entre le créateur et les produits concrets");
+            Console.WriteLine("- Principe de responsabilité unique : le code de création est regroupé");
+            Console.WriteLine("- Principe d'ouverture/fermeture : nouveaux types sans modifier le code existant");
         }
 
         public string GetName()

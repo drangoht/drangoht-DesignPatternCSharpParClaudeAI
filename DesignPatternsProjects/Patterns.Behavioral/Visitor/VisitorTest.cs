@@ -20,6 +20,7 @@ namespace Patterns.Behavioral.Visitor
             {
                 // Exécuter le code du pattern
                 RunPatternDemo();
+                Console.WriteLine("✅ Test du pattern Visitor réussi!");
             }
             catch (NotImplementedException)
             {
@@ -28,11 +29,12 @@ namespace Patterns.Behavioral.Visitor
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erreur lors de l'exécution: {ex.Message}");
+                Console.WriteLine($"❌ Erreur lors de l'exécution: {ex.Message}");
+                throw; // Rethrow to ensure test failure
             }
         }
 
-        private void RunPatternDemo()
+        private static void RunPatternDemo()
         {
             // Création de la structure d'objets
             Console.WriteLine("Création d'un document avec divers éléments...");
@@ -50,7 +52,8 @@ namespace Patterns.Behavioral.Visitor
             table.AddRow(new string[] { "Facilité d'ajout de nouvelles opérations", "Difficulté d'ajout de nouveaux éléments" });
             document.AddElement(table);
             
-            document.AddElement(new HyperlinkElement("https://refactoring.guru/design-patterns/visitor", "Plus d'informations"));
+            const string url = "https://example.com/patterns/visitor";
+            document.AddElement(new HyperlinkElement(url, "Plus d'informations"));
             
             // Affichage du document
             Console.WriteLine("\n1. Affichage du contenu brut du document:");

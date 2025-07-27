@@ -8,7 +8,7 @@ namespace Patterns.Creational.Singleton
     /// </summary>
     public class Logger
     {
-        private static Logger _instance;
+        private static Logger? _instance;
         private static readonly object _lock = new object();
 
         // Constructeur privé pour empêcher l'instanciation externe

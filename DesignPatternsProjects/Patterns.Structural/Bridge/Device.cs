@@ -3,8 +3,7 @@ using System;
 namespace Patterns.Structural.Bridge
 {
     /// <summary>
-    /// Interface d'implémentation qui définit l'interface pour les classes d'implémentation concrètes.
-    /// C'est le "côté implémentation" du bridge.
+    /// Implementation - Interface Device
     /// </summary>
     public interface IDevice
     {
@@ -15,32 +14,33 @@ namespace Patterns.Structural.Bridge
         void SetVolume(int percent);
         int GetChannel();
         void SetChannel(int channel);
+        void DisplayStatus();
     }
 
     /// <summary>
-    /// Implémentation concrète pour une télévision
+    /// Implementation concrète - TV
     /// </summary>
     public class TV : IDevice
     {
-        private bool _enabled = false;
-        private int _volume = 30;
-        private int _channel = 1;
+        private bool _isEnabled;
+        private int _volume;
+        private int _channel;
 
         public bool IsEnabled()
         {
-            return _enabled;
+            return _isEnabled;
         }
 
         public void Enable()
         {
-            _enabled = true;
-            Console.WriteLine("TV: Activée");
+            _isEnabled = true;
+            Console.WriteLine("TV allumée");
         }
 
         public void Disable()
         {
-            _enabled = false;
-            Console.WriteLine("TV: Désactivée");
+            _isEnabled = false;
+            Console.WriteLine("TV éteinte");
         }
 
         public int GetVolume()
@@ -53,7 +53,7 @@ namespace Patterns.Structural.Bridge
             if (percent > 100) percent = 100;
             if (percent < 0) percent = 0;
             _volume = percent;
-            Console.WriteLine($"TV: Volume réglé à {percent}%");
+            Console.WriteLine($"TV volume: {_volume}%");
         }
 
         public int GetChannel()
@@ -64,34 +64,39 @@ namespace Patterns.Structural.Bridge
         public void SetChannel(int channel)
         {
             _channel = channel;
-            Console.WriteLine($"TV: Chaîne changée pour {channel}");
+            Console.WriteLine($"TV chaîne: {_channel}");
+        }
+
+        public void DisplayStatus()
+        {
+            Console.WriteLine($"TV [On: {_isEnabled}, Volume: {_volume}%, Chaîne: {_channel}]");
         }
     }
 
     /// <summary>
-    /// Implémentation concrète pour une radio
+    /// Implementation concrète - Radio
     /// </summary>
     public class Radio : IDevice
     {
-        private bool _enabled = false;
-        private int _volume = 20;
-        private int _channel = 1;
+        private bool _isEnabled;
+        private int _volume;
+        private int _channel;
 
         public bool IsEnabled()
         {
-            return _enabled;
+            return _isEnabled;
         }
 
         public void Enable()
         {
-            _enabled = true;
-            Console.WriteLine("Radio: Activée");
+            _isEnabled = true;
+            Console.WriteLine("Radio allumée");
         }
 
         public void Disable()
         {
-            _enabled = false;
-            Console.WriteLine("Radio: Désactivée");
+            _isEnabled = false;
+            Console.WriteLine("Radio éteinte");
         }
 
         public int GetVolume()
@@ -104,7 +109,7 @@ namespace Patterns.Structural.Bridge
             if (percent > 100) percent = 100;
             if (percent < 0) percent = 0;
             _volume = percent;
-            Console.WriteLine($"Radio: Volume réglé à {percent}%");
+            Console.WriteLine($"Radio volume: {_volume}%");
         }
 
         public int GetChannel()
@@ -115,9 +120,12 @@ namespace Patterns.Structural.Bridge
         public void SetChannel(int channel)
         {
             _channel = channel;
-            Console.WriteLine($"Radio: Station changée pour {channel} FM");
+            Console.WriteLine($"Radio fréquence: {_channel}.0 MHz");
+        }
+
+        public void DisplayStatus()
+        {
+            Console.WriteLine($"Radio [On: {_isEnabled}, Volume: {_volume}%, Fréquence: {_channel}.0 MHz]");
         }
     }
 }
-
-

@@ -47,19 +47,27 @@ namespace Patterns.Behavioral.Mediator
             
             Console.WriteLine("\nDémonstration des communications via le médiateur:");
             
-            // Communication normale (de tous à tous via le médiateur)
-            alice.Send("Bonjour tout le monde!");
-            bob.Send("Salut Alice et tout le monde!");
-            
-            // Communication directe via le médiateur
-            Console.WriteLine("\nMessages privés:");
-            alice.SendDirect("Salut Bob, comment vas-tu?", bob);
-            bob.SendDirect("Très bien Alice, merci!", alice);
-            
-            // Fonctionnalités spécifiques aux différents types d'utilisateurs
-            Console.WriteLine("\nFonctionnalités spécifiques:");
-            ((ModeratorUser)charlie).ModerateMessage("Merci de rester courtois dans vos échanges");
-            ((AdminUser)diana).BroadcastAnnouncement("Maintenance prévue demain à 14h00");
+            // Messages normaux (de tous à tous via le médiateur)
+            alice.Send("Bonjour tout le monde !");
+            bob.Send("Salut Alice et les autres !");
+
+            // Message ciblé
+            alice.SendTo("Hey Bob, comment vas-tu ?", bob);
+            bob.SendTo("Je vais bien, merci Alice !", alice);
+
+            // Message privé
+            charlie.SendPrivate("Message confidentiel pour Diana", diana);
+            diana.SendPrivate("Bien reçu Charlie", charlie);
+
+            // Annonce (seuls les modérateurs et admins peuvent le faire)
+            Console.WriteLine("\nTentative d'annonce par un utilisateur normal:");
+            alice.Broadcast("Je fais une annonce !");
+
+            Console.WriteLine("\nAnnonce par un modérateur:");
+            charlie.Broadcast("Attention, message important du modérateur !");
+
+            Console.WriteLine("\nAnnonce par un administrateur:");
+            diana.Broadcast("Message de l'administrateur système.");
             
             Console.WriteLine("\nLe pattern Mediator permet de:");
             Console.WriteLine("- Découpler les objets en éliminant les références directes entre eux");

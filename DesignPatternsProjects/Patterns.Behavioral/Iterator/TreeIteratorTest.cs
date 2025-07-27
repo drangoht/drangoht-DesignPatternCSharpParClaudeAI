@@ -5,7 +5,7 @@ namespace Patterns.Behavioral.Iterator
     /// <summary>
     /// Test du pattern Iterator
     /// </summary>
-    public class IteratorTest : Patterns.Behavioral.IPatternTest
+    public class TreeIteratorTest : Patterns.Behavioral.IPatternTest
     {
         public void Run()
         {

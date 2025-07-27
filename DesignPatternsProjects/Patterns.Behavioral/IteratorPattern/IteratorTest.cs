@@ -18,7 +18,7 @@ namespace Patterns.Behavioral.Iterator
             Console.WriteLine("Exemple du pattern en action:");
             try 
             {
-                RunPatternDemo();
+                this.RunPatternDemo();
             }
             catch (Exception ex)
             {

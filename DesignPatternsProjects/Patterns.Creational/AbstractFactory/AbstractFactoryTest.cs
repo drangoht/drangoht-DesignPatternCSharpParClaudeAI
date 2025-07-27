@@ -18,13 +18,7 @@ namespace Patterns.Creational.AbstractFactory
             Console.WriteLine("Exemple du pattern en action:");
             try 
             {
-                // Exécuter le code du pattern
                 RunPatternDemo();
-            }
-            catch (NotImplementedException)
-            {
-                Console.WriteLine("La démonstration complète n'est pas encore implémentée.");
-                Console.WriteLine("Consultez le code source pour plus de détails sur ce pattern.");
             }
             catch (Exception ex)
             {
